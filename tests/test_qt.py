@@ -19,4 +19,3 @@ class TestUtilQt:
     @pytest.mark.asyncio
     def test_tray_supported(self, event_loop):
         assert isinstance(DesktopInfo.tray_supported(), bool)
-        assert DesktopInfo.tray_supported() is True
