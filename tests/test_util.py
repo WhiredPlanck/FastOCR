@@ -1,25 +1,18 @@
+import asyncio
 import sys
 import pytest
-
-from PyQt5.QtWidgets import QApplication
 
 from fastocr.util import DesktopInfo, get_registry_value, run_command, check_exists, instance_already_running, \
     get_environment_values
 
 
-class TestUtilQt:
-    app: QApplication
-
-    @classmethod
-    def setup_class(cls):
-        cls.app = QApplication(sys.argv)
-
-    def test_tray_supported(self):
-        assert isinstance(DesktopInfo.tray_supported(), bool)
-        assert DesktopInfo.tray_supported() is True
-
-
 class TestUtil:
+    @pytest.fixture(scope='session')
+    def event_loop(self):
+        loop = asyncio.get_event_loop()
+        yield loop
+        loop.close()
+
     def test_environment_variables(self):
         assert isinstance(DesktopInfo.XDG_CURRENT_DESKTOP, str)
         assert isinstance(DesktopInfo.WAYLAND_DISPLAY, str)
