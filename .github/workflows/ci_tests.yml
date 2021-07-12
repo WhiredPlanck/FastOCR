@@ -27,7 +27,7 @@ jobs:
           poetry-version: ${{ matrix.poetry-version }}
       - name: Install platform dependencies
         if: matrix.os == 'ubuntu-20.04'
-        run: sudo apt install dbus
+        run: sudo apt install libdbus-1-dev build-essential libpython3-dev
       - name: Install dependencies (Linux)
         if: matrix.os == 'ubuntu-20.04'
         run: poetry install -E linux
