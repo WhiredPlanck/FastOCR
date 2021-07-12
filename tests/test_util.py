@@ -46,11 +46,13 @@ class TestUtil:
         if sys.platform != 'win32':
             pytest.skip('windows platform only')
         import winreg
-        assert get_registry_value(winreg.HKEY_CURRENT_USER, r'SOFTWARE\Microsoft\Windows\CurrentVersion\Themes'
-                                                            r'\Personalize', 'SystemUsesLightTheme')
+        get_registry_value(winreg.HKEY_CURRENT_USER, r'SOFTWARE\Microsoft\Windows\CurrentVersion\Themes'
+                                                     r'\Personalize', 'SystemUsesLightTheme')
 
     @pytest.mark.asyncio
     async def test_commands(self):
+        if sys.platform == 'win32':
+            pytest.skip('not implemented on windows')
         ret = await run_command('echo', 'helloworld', allow_fail=True)
         assert isinstance(ret, tuple)
         assert len(ret) == 3
@@ -60,6 +62,8 @@ class TestUtil:
 
     @pytest.mark.asyncio
     async def test_open_command(self):
+        if sys.platform == 'win32':
+            pytest.skip('not implemented on windows')
         exists = False
         if sys.platform == 'darwin':
             exists = await check_exists('open')
