@@ -430,7 +430,7 @@ linux = ["dbus-python"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7,<3.10"
-content-hash = "0482d649ff5d339e4c239a98af2115c0772eb0ec6ebd8603d15d89435ab40f38"
+content-hash = "f4cef1b1ec971f153da7700db9f4dcf31b3f8a664fb279930ddc73bd17a521f9"
 
 [metadata.files]
 aiohttp = [
